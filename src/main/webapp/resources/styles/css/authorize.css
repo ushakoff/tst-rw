@@ -1,0 +1,23 @@
+#ha{
+	background: url('../../images/footer.png') repeat-x;	
+	min-width: 1000px;
+}
+#ha table{
+	width: 1000px;
+	margin: 0 auto;
+	color: #ff0;
+}
+#ha td{	
+	font: bold 15px "Segoe Print", Times, serif;
+	height: 44px;
+	width: 100%;
+	text-align: right;
+	vertical-align: middle;
+}
+#ha a{
+	margin: 0 3px;
+	color: #ff0;
+}
+#ha form{
+	margin: 0 10px;
+}
