@@ -17,7 +17,8 @@
 			<td><form:input size="40" maxlength="40" path="lastName" />
 		<tr>
 			<th scope="row">E-mail:</th>
-			<td><form:input size="40" maxlength="80" path="email" />
+			<td><p><form:input size="40" maxlength="80" path="email" />
+				<p><form:errors style="color: #1c9737;" path="email"/>
 		<tr>
 			<th scope="row"></th>
 			<td><input class="sbmt" type="submit" value="Save" />

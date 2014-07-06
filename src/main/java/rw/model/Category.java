@@ -10,16 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name="category")
 public class Category {
 	
 	@Id
 	@GeneratedValue	
-	@Column(name = "category_id")
+	@Column(name = "category_id", unique = true, nullable = false)
 	private Integer id;
 	
 	@Column(name = "name")
+	@NotBlank(message = "Name must not be blank")	
 	private String name;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy = "category")

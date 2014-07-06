@@ -46,7 +46,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/profile", method=RequestMethod.POST)
-	public ModelAndView profilePage(@ModelAttribute Profile profile, Principal user) {		
+	public ModelAndView profilePage(@ModelAttribute Profile profile, Principal user) {
 		User authUser = userService.getUser(user.getName());
 		if (authUser.getId().intValue() != profile.getId().intValue()) {
 			return new ModelAndView("redirect:/");

@@ -21,7 +21,7 @@ public class DiscountServiceImpl implements DiscountService {
 		return discountDAO.getDiscount(id);
 	}
 	
-	/*public void addDiscount(Discount discount) {
+	public void addDiscount(Discount discount) {
 		discountDAO.addDiscount(discount);
 	}
 	
@@ -31,7 +31,7 @@ public class DiscountServiceImpl implements DiscountService {
 	
 	public void deleteDiscount(Integer id) {
 		discountDAO.deleteDiscount(id);
-	} */
+	}
 	
 	public List<Discount> getDiscounts() {
 		return discountDAO.getDiscounts();

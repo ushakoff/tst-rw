@@ -8,7 +8,7 @@
 	<thead>
 	<tr>
 		<th style="min-width:40px;">#</th>
-		<th style="min-width:250px;">Discount</th>
+		<th style="min-width:300px;">Discount</th>
 		<th style="min-width:100px;">Save</th>
 		<th style="min-width:100px;">Action</th>
 	</tr>

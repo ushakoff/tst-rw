@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name="user")
 public class User {
@@ -22,13 +24,16 @@ public class User {
 	private Integer id;
 	
 	@Column(name = "login", unique=true)
-	@Pattern(regexp = "^[a-zA-Z0-9_.-]*$", message = "Type only letters and numbers, please.")
-	@Size(min=1, max=40, message = "Login must be at least 1 character.")
+	@NotBlank(message = "Login must not be blank")
+	@Pattern(regexp = "^[a-zA-Z0-9_.-]*$", message = "Login must contain only letters and numbers")
+	@Size(max=40, message = "Login is too long (maximum is 40 characters)")
 	private String login;
 	
+	
 	@Column(name = "password")
-	@Pattern(regexp = "^[a-zA-Z0-9_.-]*$", message = "Type only letters and numbers, please.")
-	@Size(min = 3, max = 40, message = "Password must be at least 3 characters.")
+	@NotBlank(message = "Password must not be blank")
+	@Pattern(regexp = "^[a-zA-Z0-9_.-]*$", message = "Password must contain only letters and numbers")
+	@Size(min = 3, max = 40, message = "Password must be between 3 and 40 characters long")
 	private String password;
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL) 

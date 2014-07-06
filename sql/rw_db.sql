@@ -51,7 +51,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE `rw_db`.`discount` (
   `discount_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(40) DEFAULT NULL,
+  `name` VARCHAR(40) NOT NULL,
   `category_id` INT NOT NULL,
   `percent` INT DEFAULT 0,
   PRIMARY KEY (`discount_id`),

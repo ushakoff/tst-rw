@@ -6,9 +6,10 @@
 	<thead>
 	<tr>
 		<th style="min-width:40px;">#</th>
+		<th style="min-width:150px;">Code</th>
 		<th style="min-width:250px;">Discount</th>
 		<th style="min-width:100px;">Save</th>
-		<th style="min-width:100px;">Code</th>
+		<th style="min-width:100px;">Action</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -16,8 +17,9 @@
 	<tr>
 		<th>${iter.count}</th>
 		<td>${1}		
-		<td>${1}%
 		<td>${1}
+		<td>${1}%
+		<td>Delete
 	</tr>
 	</c:forEach>
 </tbody>

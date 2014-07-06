@@ -24,7 +24,7 @@ public class DiscountController {
 	@Autowired
 	private CategoryService categoryService;
 	
-	@RequestMapping(value={"/"}, method=RequestMethod.GET)
+	@RequestMapping(value={"/", "/discounts", "categories"}, method=RequestMethod.GET)
 	public ModelAndView mainPage() {
 		ModelAndView modelAndView = new ModelAndView("main");
 		List<Category> categories = categoryService.getCategories();
@@ -34,7 +34,7 @@ public class DiscountController {
 		return modelAndView;
 	}
 		
-	@RequestMapping(value="discounts/{id}", method=RequestMethod.GET) 
+	@RequestMapping(value="/discounts/{id}", method=RequestMethod.GET) 
 	public ModelAndView discountPage(@PathVariable Integer id) {
 		Discount discount = discountService.getDiscount(id);
 		if (discount == null) {

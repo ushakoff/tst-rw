@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+
 @Entity
 @Table(name="discount")
 public class Discount {
@@ -20,13 +23,15 @@ public class Discount {
 	private Integer id;
 	
 	@Column(name = "name")
+	@NotBlank(message = "Name must not be blank")
 	private String name;
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
 	
-	@Column(name = "percent")
+	@Column(name = "percent", columnDefinition = "int default 0")
+	@Range(min = 0, max = 100, message = "Number must be between 0 and 100")
 	private Integer percent;
 
 	@OneToOne(mappedBy = "discount", cascade = CascadeType.ALL) 

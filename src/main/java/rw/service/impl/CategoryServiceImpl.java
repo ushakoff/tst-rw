@@ -17,8 +17,16 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	private CategoryDAO categoryDAO;
 
-	public Category getCategory(int id) {
+	public Category getCategory(Integer id) {
 		return categoryDAO.getCategory(id);
+	}
+
+	public void updateCategory(Category category) {
+		categoryDAO.updateCategory(category);
+	}
+	
+	public void deleteCategory(Integer id) {
+		categoryDAO.deleteCategory(id);
 	}
 	
 	public List<Category> getCategories() {

@@ -46,45 +46,25 @@ public class AdminController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/users/delete/{id}", method=RequestMethod.GET) 
-	public ModelAndView deleteUser(@PathVariable Integer id) {		
-		User user = userService.getUser(id); 
-		if (user == null) {
-			return new ModelAndView("redirect:/admin/users");
-		}
-		ModelAndView modelAndView = new ModelAndView("delete");
-		modelAndView.addObject("user", user);
-		return modelAndView;
-	}
-	
-	@RequestMapping(value="/users/delete/{id}", method=RequestMethod.POST) 
-	public ModelAndView deleteUser(@PathVariable Integer id, Principal user) {		
-		User tmpUser = userService.getUser(id);
-		if (!user.getName().equals(tmpUser.getLogin())) {
-			userService.deleteUser(id);
-		}
-		return new ModelAndView("redirect:/admin/users");
-	}
-	
 	@RequestMapping(value="/users/{id}", method=RequestMethod.GET) 
-	public ModelAndView editUser(@PathVariable Integer id) {		
+	public ModelAndView userEdit(@PathVariable Integer id) {		
 		User user = userService.getUser(id);
 		if (user == null) {
 			return new ModelAndView("redirect:/admin/users");
-		}		
+		}
 		List<Role> roles = roleService.getRoles();
-		ModelAndView modelAndView = new ModelAndView("edit");
+		ModelAndView modelAndView = new ModelAndView("userEdit");
 		modelAndView.addObject("user", user);
 		modelAndView.addObject("roles", roles);
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/users/{id}", method=RequestMethod.POST) 
-	public ModelAndView editUser(@ModelAttribute @Valid User user,
+	public ModelAndView userEditConfirm(@ModelAttribute @Valid User user,
 			BindingResult result, ModelAndView modelAndView) {
 		List<Role> roles = roleService.getRoles();
 		if (result.hasErrors()) {
-			modelAndView.setViewName("edit");
+			modelAndView.setViewName("userEdit");
 			modelAndView.addObject("roles", roles);
 			return modelAndView;
 		}
@@ -95,10 +75,27 @@ public class AdminController {
 			}
 		}
 		userService.updateUser(user);
-		modelAndView = usersPage();
-		String message = "User was successfully edited.";
-		modelAndView.addObject("message", message);
+		return new ModelAndView("redirect:/admin/users");
+	}
+	
+	@RequestMapping(value="/users/delete/{id}", method=RequestMethod.GET) 
+	public ModelAndView userDelete(@PathVariable Integer id) {		
+		User user = userService.getUser(id);
+		if (user == null) {
+			return new ModelAndView("redirect:/admin/users");
+		}
+		ModelAndView modelAndView = new ModelAndView("userDelete");
+		modelAndView.addObject("user", user);
 		return modelAndView;
+	}
+	
+	@RequestMapping(value="/users/delete/{id}", method=RequestMethod.POST) 
+	public ModelAndView userDeleteConfirm(@PathVariable Integer id, Principal user) {		
+		User tmpUser = userService.getUser(id);
+		if (!user.getName().equals(tmpUser.getLogin())) {
+			userService.deleteUser(id);
+		}
+		return new ModelAndView("redirect:/admin/users");
 	}
 	
 }

@@ -66,6 +66,36 @@
     <put-attribute name="title" value="Moderator page" />
     <put-attribute name="body" value="/WEB-INF/pages/moder/moder.jsp" />
   </definition>
+
+  <definition name="discounts" extends="base">
+    <put-attribute name="title" value="Discounts list" />
+    <put-attribute name="body" value="/WEB-INF/pages/moder/discounts.jsp" />
+  </definition>
+  
+  <definition name="discountEdit" extends="base">
+    <put-attribute name="title" value="Edit discount" />
+    <put-attribute name="body" value="/WEB-INF/pages/moder/discountEdit.jsp" />
+  </definition>
+  
+  <definition name="discountDelete" extends="base">
+    <put-attribute name="title" value="Delete discount" />
+    <put-attribute name="body" value="/WEB-INF/pages/moder/discountDelete.jsp" />
+  </definition>
+  
+  <definition name="categories" extends="base">
+    <put-attribute name="title" value="Categories list" />
+    <put-attribute name="body" value="/WEB-INF/pages/moder/categories.jsp" />
+  </definition>
+  
+  <definition name="categoryEdit" extends="base">
+    <put-attribute name="title" value="Edit category" />
+    <put-attribute name="body" value="/WEB-INF/pages/moder/categoryEdit.jsp" />
+  </definition>
+  
+  <definition name="categoryDelete" extends="base">
+    <put-attribute name="title" value="Delete category" />
+    <put-attribute name="body" value="/WEB-INF/pages/moder/categoryDelete.jsp" />
+  </definition>
   
   <definition name="admin" extends="base">
     <put-attribute name="title" value="Admin page" />
@@ -77,14 +107,14 @@
     <put-attribute name="body" value="/WEB-INF/pages/admin/users.jsp" />
   </definition>
   
-  <definition name="edit" extends="base">
+  <definition name="userEdit" extends="base">
     <put-attribute name="title" value="Edit user" />
-    <put-attribute name="body" value="/WEB-INF/pages/admin/edit.jsp" />
+    <put-attribute name="body" value="/WEB-INF/pages/admin/userEdit.jsp" />
   </definition>
   
-  <definition name="delete" extends="base">
+  <definition name="userDelete" extends="base">
     <put-attribute name="title" value="Delete user" />
-    <put-attribute name="body" value="/WEB-INF/pages/admin/delete.jsp" />
+    <put-attribute name="body" value="/WEB-INF/pages/admin/userDelete.jsp" />
   </definition>
 
 </tiles-definitions>

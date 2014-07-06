@@ -6,7 +6,9 @@ import rw.model.Category;
 
 public interface CategoryService {
 	
-	public Category getCategory(int id);
+	public Category getCategory(Integer id);
+	public void updateCategory(Category category);
+	public void deleteCategory(Integer id);
 	public List<Category> getCategories();
 
 }

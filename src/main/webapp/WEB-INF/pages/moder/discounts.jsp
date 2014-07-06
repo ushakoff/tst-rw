@@ -1,11 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<h1>MAIN PAGE</h1>
-<p style="font-size:18px;margin: 0 10px 10px;">All categories:
-<c:forEach var="category" items="${categories}">
-	<a style="margin: 0 3px;" href="${pageContext.request.contextPath}/categories/${category.id}">${category.name} (${category.discounts.size()})</a>
-</c:forEach>
-<p>
+<h1>Discounts list</h1>
 <table class="table1">
 	<thead>
 	<tr>
@@ -20,10 +15,11 @@
 	<c:forEach var="discount" items="${discounts}" varStatus="iter">
 	<tr>
 		<th>${iter.count}</th>		
-		<td>${discount.name}		
+		<td>${discount.name}
 		<td>${discount.percent}%
-		<td><a href="${pageContext.request.contextPath}/categories/${discount.category.id}">${discount.category.name}</a>
-		<td><a href="${pageContext.request.contextPath}/discounts/${discount.id}">More info</a>
+		<td><a href="${pageContext.request.contextPath}/moder/categories/${discount.category.id}">${discount.category.name}</a>
+		<td><p><a href="${pageContext.request.contextPath}/moder/discounts/${discount.id}">Edit</a>
+			<p><a href="${pageContext.request.contextPath}/moder/discounts/delete/${discount.id}">Delete</a>
 	</tr>
 	</c:forEach>
 </tbody>

@@ -9,6 +9,8 @@
 <p onClick="location.href = '${pageContext.request.contextPath}/user/profile'" >My profile</p>
 <H1>MODERATOR</H1>
 <p onClick="location.href = '${pageContext.request.contextPath}/moder'">Moderator page</p>
+<p onClick="location.href = '${pageContext.request.contextPath}/moder/categories'">Categories list</p>
+<p onClick="location.href = '${pageContext.request.contextPath}/moder/discounts'">Discounts list</p>
 <H1>ADMINISTRATOR</H1>
 <p onClick="location.href = '${pageContext.request.contextPath}/admin'">Admin page</p>
 <p onClick="location.href = '${pageContext.request.contextPath}/admin/users'">Users list</p>

@@ -21,11 +21,23 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return sessionFactory.getCurrentSession();
 	}
 
-	public Category getCategory(int id) {
+	public Category getCategory(Integer id) {
 		Query query = getCurrentSession().createQuery("from Category c where c.id = :id");
 		query.setParameter("id", id);
 		Category category = (Category) query.uniqueResult();
 		return category;
+	}
+
+	@Override
+	public void updateCategory(Category category) {
+		getCurrentSession().update(category);
+	}
+	
+	public void deleteCategory(Integer id) {
+		Category category = getCategory(id);
+		if (category != null) {
+			getCurrentSession().delete(category);
+		}		
 	}
 	
 	@SuppressWarnings("unchecked")
