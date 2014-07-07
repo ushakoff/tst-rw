@@ -23,7 +23,7 @@
 	<c:forEach var="discount" items="${category.discounts}" varStatus="iter">
 	<tr>
 		<th>${iter.count}</th>
-		<td>${discount.name}
+		<td><p class="lnk" onClick="location.href = '${pageContext.request.contextPath}/moder/discounts/${discount.id}'">${discount.name}
 		<td>${discount.percent}%
 		<td><p><a href="${pageContext.request.contextPath}/moder/discounts/${discount.id}">Edit</a>
 			<p><a href="${pageContext.request.contextPath}/moder/discounts/delete/${discount.id}">Delete</a>

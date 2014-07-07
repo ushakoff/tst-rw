@@ -24,13 +24,21 @@ public class DiscountController {
 	@Autowired
 	private CategoryService categoryService;
 	
-	@RequestMapping(value={"/", "/discounts", "categories"}, method=RequestMethod.GET)
-	public ModelAndView mainPage() {
-		ModelAndView modelAndView = new ModelAndView("main");
+	@RequestMapping(value={"/", "/discounts"}, method=RequestMethod.GET)
+	public ModelAndView discountsPage() {
+		ModelAndView modelAndView = new ModelAndView("mainDiscounts");
 		List<Category> categories = categoryService.getCategories();
 		modelAndView.addObject("categories", categories);
 		List<Discount> discounts = discountService.getDiscounts();
 		modelAndView.addObject("discounts", discounts);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value={"/categories"}, method=RequestMethod.GET)
+	public ModelAndView categoriesPage() {
+		ModelAndView modelAndView = new ModelAndView("mainCategories");
+		List<Category> categories = categoryService.getCategories();
+		modelAndView.addObject("categories", categories);		
 		return modelAndView;
 	}
 		

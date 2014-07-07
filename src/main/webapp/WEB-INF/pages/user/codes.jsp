@@ -17,7 +17,7 @@
 	<tr>
 		<th>${iter.count}</th>
 		<td>${discCode.code}		
-		<td>${discCode.discount.name}
+		<td><p class="lnk" onClick="location.href = '${pageContext.request.contextPath}/discounts/${discCode.discount.id}'">${discCode.discount.name}
 		<td>${discCode.discount.percent}%
 		<td><a href="${pageContext.request.contextPath}/user/codes/delete/${discCode.id}">Delete</a>
 	</tr>

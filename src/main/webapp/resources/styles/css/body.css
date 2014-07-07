@@ -13,6 +13,7 @@ img{
 	margin: 0;
 	padding: 0;
 }
+.lnk{cursor:pointer;}
 .al {text-align: left;}
 .alb {text-align: left; font-weight: bold;}
 .ac {text-align: center;}

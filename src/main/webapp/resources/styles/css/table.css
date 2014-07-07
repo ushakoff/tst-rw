@@ -11,22 +11,22 @@ table.table1{
     color:#fff;
     text-shadow:1px 1px 1px #148F23;
     border:1px solid #51CE37;
-    border-bottom:3px solid #5CD929;
-    background-color:#50D929;
+    border-bottom:3px solid #5CD929;    
     background:-webkit-gradient(
         linear,
         left bottom,
         left top,
-        color-stop(0.02, rgb(81,192,67)),
-        color-stop(0.51, rgb(97,198,66)),
-        color-stop(0.87, rgb(85,217,41))
+        color-stop(0.02, rgb(57,192,67)),
+        color-stop(0.51, rgb(73,198,66)),
+        color-stop(0.87, rgb(92,217,41))
         );
     background: -moz-linear-gradient(
         center bottom,
-        rgb(81,192,67) 2%,
-        rgb(97,198,66) 51%,
-        rgb(85,217,41) 87%
+        rgb(57,192,67) 2%,
+        rgb(73,198,66) 51%,
+        rgb(92,217,41) 87%
         );
+    background-color:#50D929;
     -webkit-border-top-left-radius:5px;
     -webkit-border-top-right-radius:5px;
     -moz-border-radius:5px 5px 0px 0px;
@@ -39,8 +39,7 @@ table.table1{
 }
 .table1 tbody th{
     color:#fff;
-    text-shadow:1px 1px 1px #148F23;
-    background-color:#50D929;
+    text-shadow:1px 1px 1px #148F23;    
     border:1px solid #51CE37;
     border-right:3px solid #5CD929;
     padding:0px 5px;
@@ -58,6 +57,7 @@ table.table1{
         rgb(73,198,66) 51%,
         rgb(57,192,67) 87%
         );
+    background-color:#50D929;
     -moz-border-radius:5px 0px 0px 5px;
     -webkit-border-top-left-radius:5px;
     -webkit-border-bottom-left-radius:5px;

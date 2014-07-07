@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<h1>Categories list</h1>
+<h1>Categories</h1>
 <table class="table1">
 	<thead>
 	<tr>
@@ -14,10 +14,9 @@
 	<c:forEach var="category" items="${categories}" varStatus="iter">
 	<tr>
 		<th>${iter.count}</th>
-		<td><p class="lnk" onClick="location.href = '${pageContext.request.contextPath}/moder/categories/${category.id}'">${category.name}		
+		<td><p class="lnk" onClick="location.href = '${pageContext.request.contextPath}/categories/${category.id}'">${category.name}		
 		<td>${category.discounts.size()}		
-		<td><p><a href="${pageContext.request.contextPath}/moder/categories/${category.id}">Edit</a>
-			<p><a href="${pageContext.request.contextPath}/moder/categories/delete/${category.id}">Delete</a>
+		<td><a href="${pageContext.request.contextPath}/categories/${category.id}">View</a>
 	</tr>
 	</c:forEach>
 </tbody>
