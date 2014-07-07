@@ -73,10 +73,11 @@ CREATE TABLE `rw_db`.`detail` (
 ENGINE = InnoDB;
 
 CREATE TABLE `rw_db`.`codes` (
+  `code_id` INT NOT NULL AUTO_INCREMENT,
   `code` VARCHAR(255) NOT NULL,
   `user_id` INT NOT NULL,
   `discount_id` INT NOT NULL,
-  PRIMARY KEY (`code`),
+  PRIMARY KEY (`code_id`),
   FOREIGN KEY (`user_id`)
     REFERENCES `rw_db`.`user` (`user_id`)
     ON DELETE CASCADE
@@ -132,15 +133,15 @@ INSERT INTO `rw_db`.`detail` (`discount_id`, `info`, `site`) VALUES (5, 'Highly 
 INSERT INTO `rw_db`.`detail` (`discount_id`, `info`, `site`) VALUES (6, 'Use your code when booking your stay at Thistle Hotels and receive up to 12% off our best available rate. Your rate includes a nights accommodation and breakfast, and a room upgrade available at most Thistle Hotels across the U.K. Upgrade excludes Thistle Heathrow, Thistle Manchester, Bloomsbury Park in London and Thistle Poole.', 'Fairmont.com');
 INSERT INTO `rw_db`.`detail` (`discount_id`, `info`, `site`) VALUES (7, 'Cookies by Design offers freshly baked, hand decorated cookie bouquets and treats that can be personalized for any occasion. We are delighted to now offer a Gluten Free Gift Range. Don’t forget our NFL, MLB and NCAA gifts that are perfect for that sports fan in your life. To redeem this offer, enter the code during the checkout process.', 'CookiesbyDesign.com');
 
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('jkfuircjdsj', 1, 1);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('poemvrgijvi', 1, 1);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('93r8cj34ioj', 1, 2);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('c809j34v09s', 2, 3);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('8934nojcodn', 3, 1);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('09vj43njc80', 3, 4);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('c09ujnveiri', 3, 5);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('j2jnfklvjci', 3, 2);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('pconwonfejv', 6, 6);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('8u3w4bnv0ir', 4, 5);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('cuihcno3wfh', 5, 3);
-INSERT INTO `rw_db`.`codes` (`code`, `user_id`, `discount_id`) VALUES ('698h34oijoj', 5, 7);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (1, '974C5DA5-11', 1, 1);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (2, '2156B03F-4C', 1, 1);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (3, 'C70C72BA-CF', 1, 2);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (4, '8C81D867-91', 2, 3);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (5, 'CA394120-7A', 3, 1);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (6, '40424A24-72', 3, 4);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (7, '2195CF3A-57', 3, 5);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (8, '276C4F12-E1', 3, 2);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (9, 'BF2FDB4C-92', 6, 6);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (10, 'FC046BDB-1F', 4, 5);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (11, '970453F3-26', 5, 3);
+INSERT INTO `rw_db`.`codes` (`code_id`, `code`, `user_id`, `discount_id`) VALUES (12, '8AE2EB04-0C', 5, 7);

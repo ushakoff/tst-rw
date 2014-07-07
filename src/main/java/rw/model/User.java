@@ -1,12 +1,16 @@
 package rw.model;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
@@ -44,6 +48,9 @@ public class User {
     		joinColumns={@JoinColumn(name="user_id", referencedColumnName="user_id")},  
     		inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="role_id")}) 
 	private Role role;
+	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy = "user")
+	private Set<DiscCode> discCodes;
 	
 	public Integer getId() {
 		return id;
@@ -84,6 +91,14 @@ public class User {
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
+	}
+
+	public Set<DiscCode> getDiscCodes() {
+		return discCodes;
+	}
+
+	public void setDiscCodes(Set<DiscCode> discCodes) {
+		this.discCodes = discCodes;
 	}
 
 }

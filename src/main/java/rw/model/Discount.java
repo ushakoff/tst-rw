@@ -1,12 +1,16 @@
 package rw.model;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,6 +40,9 @@ public class Discount {
 
 	@OneToOne(mappedBy = "discount", cascade = CascadeType.ALL) 
 	private Detail detail;
+	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy = "discount")
+	private Set<DiscCode> discCodes;
 	
 	public Integer getId() {
 		return id;
@@ -75,6 +82,14 @@ public class Discount {
 
 	public void setDetail(Detail detail) {
 		this.detail = detail;
+	}
+
+	public Set<DiscCode> getDiscCodes() {
+		return discCodes;
+	}
+
+	public void setDiscCodes(Set<DiscCode> discCodes) {
+		this.discCodes = discCodes;
 	}
 
 }

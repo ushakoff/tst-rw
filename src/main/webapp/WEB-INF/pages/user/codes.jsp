@@ -13,13 +13,13 @@
 	</tr>
 	</thead>
 	<tbody>
-	<c:forEach var="discount" items="${category.discounts}" varStatus="iter">
+	<c:forEach var="discCode" items="${discCodes}" varStatus="iter">
 	<tr>
 		<th>${iter.count}</th>
-		<td>${1}		
-		<td>${1}
-		<td>${1}%
-		<td>Delete
+		<td>${discCode.code}		
+		<td>${discCode.discount.name}
+		<td>${discCode.discount.percent}%
+		<td><a href="${pageContext.request.contextPath}/user/codes/delete/${discCode.id}">Delete</a>
 	</tr>
 	</c:forEach>
 </tbody>
