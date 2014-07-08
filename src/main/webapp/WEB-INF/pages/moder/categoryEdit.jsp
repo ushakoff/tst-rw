@@ -7,6 +7,8 @@
 	<h3>New name: <form:input size="40" maxlength="40" path="name" /></h3>
 	<p><form:errors style="color: #1c9737;" path="name"/>
 	<p><input class="sbmt" type="submit" value="OK" />
+	<input class="sbmt" type="button" value="Add discount"
+			onclick="window.location='${pageContext.request.contextPath}/moder/discounts/create/${category.id}'" />
 	<input class="sbmt" type="button" value="Cancel"
 			onclick="window.location='${pageContext.request.contextPath}/moder/categories'" />
 </form:form>

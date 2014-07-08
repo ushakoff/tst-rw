@@ -7,6 +7,7 @@ import rw.model.Category;
 public interface CategoryDAO {
 	
 	public Category getCategory(Integer id);
+	public void addCategory(Category category);
 	public void updateCategory(Category category);
 	public void deleteCategory(Integer id);
 	public List<Category> getCategories();

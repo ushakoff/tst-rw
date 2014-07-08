@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import rw.model.Category;
+import rw.model.Detail;
 import rw.model.Discount;
 import rw.service.CategoryService;
 import rw.service.DiscountService;
@@ -66,6 +67,34 @@ public class ModerController {
 		return new ModelAndView("redirect:/moder/discounts");
 	}
 	
+	@RequestMapping(value="/discounts/create/{id}", method=RequestMethod.GET) 
+	public ModelAndView discountCreate(@PathVariable Integer id) {
+		Category category = categoryService.getCategory(id);
+		if (category == null) {
+			return new ModelAndView("redirect:/moder/categories");
+		}
+		Discount discount = new Discount();
+		discount.setCategory(category);
+		discount.setDetail(new Detail());
+		ModelAndView modelAndView = new ModelAndView("discountCreate");
+		modelAndView.addObject("discount", discount);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/discounts/create", method=RequestMethod.POST)
+	public ModelAndView discountCreateConfirm(@ModelAttribute @Valid Discount discount,
+			BindingResult result, ModelAndView modelAndView) {
+		if (result.hasErrors()) {
+			modelAndView.setViewName("discountCreate");
+			return modelAndView;
+		}
+		if (discount.getPercent() == null) {
+			discount.setPercent(0);
+		}
+		discountService.addDiscount(discount);
+		return new ModelAndView("redirect:/moder/categories");
+	}
+	
 	@RequestMapping(value="/discounts/delete/{id}", method=RequestMethod.GET) 
 	public ModelAndView discountDelete(@PathVariable Integer id) {		
 		Discount discount = discountService.getDiscount(id);
@@ -113,6 +142,24 @@ public class ModerController {
 			return modelAndView;
 		}
 		categoryService.updateCategory(category);
+		return new ModelAndView("redirect:/moder/categories");
+	}
+	
+	@RequestMapping(value="/categories/create", method=RequestMethod.GET) 
+	public ModelAndView categoryCreate() {
+		ModelAndView modelAndView = new ModelAndView("categoryCreate");
+		Category category = new Category();
+		modelAndView.addObject("category", category);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/categories/create", method=RequestMethod.POST)
+	public ModelAndView categoryCreateConfirm(@ModelAttribute @Valid Category category,
+			BindingResult result, ModelAndView modelAndView) {
+		if (result.hasErrors()) {
+			return new ModelAndView("categoryCreate");
+		}
+		categoryService.addCategory(category);
 		return new ModelAndView("redirect:/moder/categories");
 	}
 	

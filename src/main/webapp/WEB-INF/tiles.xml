@@ -82,6 +82,11 @@
     <put-attribute name="body" value="/WEB-INF/pages/moder/discountEdit.jsp" />
   </definition>
   
+  <definition name="discountCreate" extends="base">
+    <put-attribute name="title" value="Create discount" />
+    <put-attribute name="body" value="/WEB-INF/pages/moder/discountCreate.jsp" />
+  </definition>
+  
   <definition name="discountDelete" extends="base">
     <put-attribute name="title" value="Delete discount" />
     <put-attribute name="body" value="/WEB-INF/pages/moder/discountDelete.jsp" />
@@ -95,6 +100,11 @@
   <definition name="categoryEdit" extends="base">
     <put-attribute name="title" value="Edit category" />
     <put-attribute name="body" value="/WEB-INF/pages/moder/categoryEdit.jsp" />
+  </definition>
+  
+  <definition name="categoryCreate" extends="base">
+    <put-attribute name="title" value="Create category" />
+    <put-attribute name="body" value="/WEB-INF/pages/moder/categoryCreate.jsp" />
   </definition>
   
   <definition name="categoryDelete" extends="base">

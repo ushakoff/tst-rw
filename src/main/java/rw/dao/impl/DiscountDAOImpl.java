@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import rw.dao.DiscountDAO;
+import rw.model.Detail;
 import rw.model.Discount;
 
 @Repository
@@ -21,13 +22,14 @@ public class DiscountDAOImpl implements DiscountDAO {
 		return sessionFactory.getCurrentSession();
 	}
 
-	public void addDiscount(Discount discount) {		
-		/*Role role = (Role) getCurrentSession().load(Role.class, 1);  
-		discount.setRole(role);
-		Detail detail = new Detail();
-		discount.setDetail(detail);
-		detail.setDiscount(discount);
-		getCurrentSession().save(discount);*/
+	public void addDiscount(Discount discount) {
+		Detail tmpDetail = discount.getDetail();
+		if (tmpDetail == null) {
+			tmpDetail = new Detail();
+			discount.setDetail(tmpDetail);
+		}
+		tmpDetail.setDiscount(discount);		
+		getCurrentSession().save(discount);
 	}
 	
 	public Discount getDiscount(Integer id) {

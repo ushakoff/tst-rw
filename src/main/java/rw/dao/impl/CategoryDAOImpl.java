@@ -28,7 +28,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return category;
 	}
 
-	@Override
+	public void addCategory(Category category) {
+		getCurrentSession().save(category);
+	}
+	
 	public void updateCategory(Category category) {
 		getCurrentSession().update(category);
 	}
