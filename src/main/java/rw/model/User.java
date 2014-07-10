@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -22,22 +23,29 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name="user")
 public class User {
 	
+	private static final String MESSAGE_LOGIN_NOTBLANK= "Login must not be blank";
+	private static final String MESSAGE_LOGIN_REGEXP = "Login must contain only latin letters and numbers";
+	private static final String MESSAGE_LOGIN_LONG = "Login is too long (maximum is 40 characters)";
+	private static final String MESSAGE_PASSWORD_NOTBLANK= "Password must not be blank";
+	private static final String MESSAGE_PASSWORD_REGEXP = "Password must contain only latin letters and numbers";
+	private static final String MESSAGE_PASSWORD_LONG = "Password must be between 3 and 40 characters long";
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "user_id", unique = true, nullable = false)
 	private Integer id;
 	
 	@Column(name = "login", unique=true)
-	@NotBlank(message = "Login must not be blank")
-	@Pattern(regexp = "^[a-zA-Z0-9_.-]*$", message = "Login must contain only letters and numbers")
-	@Size(max=40, message = "Login is too long (maximum is 40 characters)")
+	@NotBlank(message = MESSAGE_LOGIN_NOTBLANK)
+	@Pattern(regexp = "^[a-zA-Z0-9_.-]*$", message = MESSAGE_LOGIN_REGEXP)
+	@Size(max=40, message = MESSAGE_LOGIN_LONG)
 	private String login;
 	
 	
 	@Column(name = "password")
-	@NotBlank(message = "Password must not be blank")
-	@Pattern(regexp = "^[a-zA-Z0-9_.-]*$", message = "Password must contain only letters and numbers")
-	@Size(min = 3, max = 40, message = "Password must be between 3 and 40 characters long")
+	@NotBlank(message = MESSAGE_PASSWORD_NOTBLANK)
+	@Pattern(regexp = "^[a-zA-Z0-9_.-]*$", message = MESSAGE_PASSWORD_REGEXP)
+	@Size(min = 3, max = 40, message = MESSAGE_PASSWORD_LONG)
 	private String password;
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL) 
@@ -50,6 +58,7 @@ public class User {
 	private Role role;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy = "user")
+	@OrderBy("id")
 	private Set<DiscCode> discCodes;
 	
 	public Integer getId() {

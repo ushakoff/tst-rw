@@ -45,8 +45,7 @@ ENGINE = InnoDB;
 CREATE TABLE `rw_db`.`category` (
   `category_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(40) NOT NULL,
-  PRIMARY KEY (`category_id`),
-  UNIQUE `name` (`name`))
+  PRIMARY KEY (`category_id`))
 ENGINE = InnoDB;
 
 CREATE TABLE `rw_db`.`discount` (

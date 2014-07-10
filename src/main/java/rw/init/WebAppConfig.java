@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -26,7 +27,8 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("rw")
-@PropertySource("classpath:application.properties")
+@PropertySources(value = {@PropertySource("classpath:application.properties"),
+						  @PropertySource("classpath:messages.properties")})
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 	
     private static final String PROPERTY_DATABASE_DRIVER = "db.driver";
@@ -36,7 +38,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	
     private static final String PROPERTY_HIBERNATE_DIALECT = "hibernate.dialect";
     private static final String PROPERTY_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    private static final String PROPERTY_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";
+    private static final String PROPERTY_ENTITYMANAGER_PACKAGES_TO_SCAN = "entitymanager.packages.to.scan";    
     	
 	@Resource
 	private Environment env;
@@ -47,7 +49,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_DATABASE_DRIVER));
 		dataSource.setUrl(env.getRequiredProperty(PROPERTY_DATABASE_URL));
 		dataSource.setUsername(env.getRequiredProperty(PROPERTY_DATABASE_USERNAME));
-		dataSource.setPassword(env.getRequiredProperty(PROPERTY_DATABASE_PASSWORD));		
+		dataSource.setPassword(env.getRequiredProperty(PROPERTY_DATABASE_PASSWORD));
 		return dataSource;
 	}
 	

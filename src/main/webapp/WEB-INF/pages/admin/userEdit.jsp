@@ -15,7 +15,7 @@
 				</c:when>
 				<c:otherwise>
 					<form:input size="40" maxlength="40" path="login" />
-					<p><form:errors style="color: #1c9737;" path="login"/>					
+					<p><form:errors style="color: #1c9737;" path="login"/>
   				</c:otherwise>
 			</c:choose>
 		<tr>
@@ -51,3 +51,26 @@
 				onclick="window.location='${pageContext.request.contextPath}/admin/users'" />
 	</table>
 </form:form>
+<h4>User's codes:</h4>
+<table class="table1">
+	<thead>
+	<tr>
+		<th style="min-width:40px;">#</th>
+		<th style="min-width:150px;">Code</th>
+		<th style="min-width:250px;">Discount</th>
+		<th style="min-width:100px;">Save</th>
+		<th style="min-width:100px;">Action</th>
+	</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="discCode" items="${user.discCodes}" varStatus="iter">
+	<tr>
+		<th>${iter.count}</th>
+		<td>${discCode.code}
+		<td><p class="lnk" onClick="location.href = '${pageContext.request.contextPath}/discounts/${discCode.discount.id}'">${discCode.discount.name}
+		<td>${discCode.discount.percent}%
+		<td><a href="${pageContext.request.contextPath}/admin/codes/delete/${discCode.id}">Delete</a>
+	</tr>
+	</c:forEach>
+</tbody>
+</table>

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -21,13 +22,16 @@ import org.hibernate.validator.constraints.Range;
 @Table(name="discount")
 public class Discount {
 	
+	private static final String MESSAGE_NAME_NOTBLANK = "Name must not be blank";
+	private static final String MESSAGE_PERCENT_BETWEEN = "Number must be between 0 and 100";
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "discount_id", unique = true, nullable = false)
 	private Integer id;
 	
 	@Column(name = "name")
-	@NotBlank(message = "Name must not be blank")
+	@NotBlank(message = MESSAGE_NAME_NOTBLANK)
 	private String name;
 	
 	@ManyToOne
@@ -35,13 +39,14 @@ public class Discount {
 	private Category category;
 	
 	@Column(name = "percent", columnDefinition = "int default 0")
-	@Range(min = 0, max = 100, message = "Number must be between 0 and 100")
+	@Range(min = 0, max = 100, message = MESSAGE_PERCENT_BETWEEN)
 	private Integer percent;
 
 	@OneToOne(mappedBy = "discount", cascade = CascadeType.ALL) 
 	private Detail detail;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy = "discount")
+	@OrderBy("id")
 	private Set<DiscCode> discCodes;
 	
 	public Integer getId() {

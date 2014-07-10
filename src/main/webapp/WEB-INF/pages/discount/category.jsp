@@ -2,7 +2,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <h1>Category: ${category.name}</h1>
-<h3 style="margin: 0 10px 10px;"><a href="${pageContext.request.contextPath}/categories">All categories</a></h3>
+<h3 style="margin: 0 10px 10px;">
+	<a href="${pageContext.request.contextPath}/">All discounts</a>
+	<a href="${pageContext.request.contextPath}/categories">All categories</a>
+</h3>
 <p>
 <table class="table1">
 	<thead>

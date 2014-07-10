@@ -31,7 +31,7 @@
 	padding: 5px 10px;
 	text-decoration: none;
 	color: #20b040;
-	cursor: default;
+	cursor: pointer;
 }
 #hcm p:hover{
 	background: #bbf2bf;

@@ -2,10 +2,12 @@ package rw.controller;
 
 import java.security.Principal;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +27,12 @@ import rw.service.UserService;
 
 @Controller
 public class SecurityController {
+	
+	private static final String MESSAGE_LOGIN_USED = "security.login.used";
+	private static final String MESSAGE_PROFILE_FILL = "user.profile.fill";
+	
+	@Resource
+	private Environment env;
 	
 	@Autowired
 	private ProfileService profileService;
@@ -51,8 +59,7 @@ public class SecurityController {
 		if (user != null) {
 			userName = user.getName() + ", ";
 		}
-		model.addObject("msg", "Sorry, " + userName
-				+ "you do not have permission to access this page!");
+		model.addObject("userName", userName);
 		return model;
 	}
 	
@@ -71,7 +78,7 @@ public class SecurityController {
 			return modelAndView;
 		}		
 		if (userIsExists(user.getLogin())) {
-			modelAndView.addObject("message", "We're sorry, this login already in use.");
+			modelAndView.addObject("message", env.getRequiredProperty(MESSAGE_LOGIN_USED));
 			return modelAndView;
 		}
 		userService.addUser(user);
@@ -79,7 +86,7 @@ public class SecurityController {
 		autoLogin(user.getLogin());
 		modelAndView = new ModelAndView("profile");
 		modelAndView.addObject("profile", user.getProfile());
-		modelAndView.addObject("message", "Please, fill your profile.");
+		modelAndView.addObject("message", env.getRequiredProperty(MESSAGE_PROFILE_FILL));
 		return modelAndView;
 	}
 	

@@ -3,9 +3,11 @@ package rw.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import rw.model.DiscCode;
 import rw.model.Role;
 import rw.model.User;
+import rw.service.DiscCodeService;
 import rw.service.ProfileService;
 import rw.service.RoleService;
 import rw.service.UserService;
@@ -23,6 +27,11 @@ import rw.service.UserService;
 @Controller
 @RequestMapping("/admin/**")
 public class AdminController {
+	
+	private static final String MESSAGE_LOGIN_USED = "admin.login.used";
+	
+	@Resource
+	private Environment env;
 	
 	@Autowired
 	private UserService userService;
@@ -32,6 +41,9 @@ public class AdminController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	private DiscCodeService discCodeService;
 	
 	@RequestMapping(value="/**", method=RequestMethod.GET)
 	public ModelAndView adminPage() {
@@ -63,11 +75,14 @@ public class AdminController {
 	public ModelAndView userEditConfirm(@ModelAttribute @Valid User user,
 			BindingResult result, ModelAndView modelAndView) {
 		List<Role> roles = roleService.getRoles();
+		if (incorrectLogin(user)) {
+			result.rejectValue("login", "", env.getRequiredProperty(MESSAGE_LOGIN_USED));
+		}
 		if (result.hasErrors()) {
 			modelAndView.setViewName("userEdit");
 			modelAndView.addObject("roles", roles);
 			return modelAndView;
-		}
+		}				
 		int tmpRoleId = user.getRole().getId();
 		for (Role role : roles) {
 			if (role.getId() == tmpRoleId) {
@@ -96,6 +111,32 @@ public class AdminController {
 			userService.deleteUser(id);
 		}
 		return new ModelAndView("redirect:/admin/users");
+	}
+	
+	@RequestMapping(value="/codes/delete/{id}", method=RequestMethod.GET)
+	public ModelAndView codesPage(@PathVariable Integer id) {
+		DiscCode discCode = discCodeService.getDiscCode(id);
+		if (discCode == null) {
+			return new ModelAndView("redirect:/admin/users");
+		}
+		User currentUser = discCode.getUser();
+		discCodeService.deleteDiscCode(id);
+		if (currentUser != null) {
+			return new ModelAndView("redirect:/admin/users/" + currentUser.getId());
+		}			
+		return new ModelAndView("redirect:/admin/users");
+	}
+	
+	private boolean incorrectLogin(User user) {
+		String tmpLogin = user.getLogin();
+		User tmpUser = userService.getUser(tmpLogin);
+		if (tmpUser == null) {
+			return false;
+		}
+		if (tmpUser.getId().intValue() == user.getId().intValue()) {
+			return false;
+		}
+		return true;
 	}
 	
 }

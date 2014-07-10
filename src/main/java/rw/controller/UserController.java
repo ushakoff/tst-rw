@@ -3,7 +3,10 @@ package rw.controller;
 import java.security.Principal;
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +25,11 @@ import rw.service.UserService;
 @Controller
 @RequestMapping("/user/**")
 public class UserController {
+	
+	private static final String MESSAGE_PROFILE_SAVE = "user.profile.save";
+	
+	@Resource
+	private Environment env;
 	
 	@Autowired
 	private UserService userService;
@@ -63,7 +71,7 @@ public class UserController {
 			return new ModelAndView("redirect:/user/codes");
 		}
 		if (user.getName().equals(discCode.getUser().getLogin())) {
-			discCodeService.deleteDiscCode(discCode.getId()); //TODO id or discCode?
+			discCodeService.deleteDiscCode(discCode.getId());
 		}
 		return new ModelAndView("redirect:/user/codes");
 	}
@@ -84,8 +92,7 @@ public class UserController {
 		}
 		profileService.updateProfile(profile);
 		ModelAndView modelAndView = new ModelAndView("profile");
-		String message = "Profile was successfully saved.";	
-		modelAndView.addObject("message", message);
+		modelAndView.addObject("message", env.getRequiredProperty(MESSAGE_PROFILE_SAVE));
 		return modelAndView;
 	}
 	

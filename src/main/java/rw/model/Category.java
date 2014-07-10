@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -16,16 +17,19 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name="category")
 public class Category {
 	
+	private static final String MESSAGE_NAME_NOTBLANK = "Name must not be blank";
+	
 	@Id
 	@GeneratedValue	
 	@Column(name = "category_id", unique = true, nullable = false)
 	private Integer id;
 	
 	@Column(name = "name")
-	@NotBlank(message = "Name must not be blank")	
+	@NotBlank(message = MESSAGE_NAME_NOTBLANK)	
 	private String name;
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy = "category")
+	@OrderBy("id")
 	private Set<Discount> discounts;
 	
 	public Integer getId() {
