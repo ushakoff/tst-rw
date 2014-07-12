@@ -78,6 +78,7 @@
 	outline: 0 none currentColor;
 	padding: 0 40px;
 	text-shadow: 0 1px #e3f0e4;
+	cursor: pointer;
 }
 .msg {
 	color: #1c9737;

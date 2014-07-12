@@ -38,7 +38,7 @@ public class Discount {
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
 	
-	@Column(name = "percent", columnDefinition = "int default 0")
+	@Column(name = "percent", columnDefinition = "int default 0")	
 	@Range(min = 0, max = 100, message = MESSAGE_PERCENT_BETWEEN)
 	private Integer percent;
 
